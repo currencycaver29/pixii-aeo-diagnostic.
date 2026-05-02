@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AEO Diagnostic — AI Engine Optimization Report Card</title>
+  <meta name="description" content="See how AI shopping assistants recommend your product vs competitors. Query GPT, Claude, and Gemini simultaneously." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>" />
+</head>
+<body>
+  <!-- ─── Animated Background ─── -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+  <div class="bg-glow bg-glow-3"></div>
+
+  <!-- ─── Header ─── -->
+  <header id="header">
+    <div class="header-content">
+      <div class="logo-group">
+        <div class="logo-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="url(#logo-grad)" />
+            <path d="M10 16C10 12.686 12.686 10 16 10C19.314 10 22 12.686 22 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="16" r="2" fill="white"/>
+            <path d="M16 18V23" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <defs><linearGradient id="logo-grad" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#8b5cf6"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+          </svg>
+        </div>
+        <div>
+          <h1 class="logo-text">AEO Diagnostic</h1>
+          <p class="logo-sub">AI Engine Optimization</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btn-settings" class="btn-icon" title="API Settings" aria-label="Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+        <button id="btn-demo" class="btn-secondary" title="Load demo data">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Try Demo
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ─── Hero / Query Section ─── -->
+    <section id="query-section" class="section">
+      <div class="hero-badge">Powered by GPT · Claude · Gemini</div>
+      <h2 class="hero-title">How does AI recommend<br /><span class="gradient-text">your product?</span></h2>
+      <p class="hero-desc">Enter a shopping query to see how AI assistants rank your brand vs competitors. Get an instant AEO report card with actionable optimization insights.</p>
+
+      <form id="query-form" class="query-form" autocomplete="off">
+        <div class="input-group input-group-main">
+          <label for="input-query">Shopping Query</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="input-query" placeholder='e.g. "best magnesium supplement for seniors"' required />
+          </div>
+        </div>
+        <div class="input-group">
+          <label for="input-brand">Your Brand <span class="label-opt">(optional)</span></label>
+          <div class="input-wrapper">
+            <svg class="input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+            <input type="text" id="input-brand" placeholder='e.g. "Nature Made"' />
+          </div>
+        </div>
+        <button type="submit" id="btn-submit" class="btn-primary">
+          <span class="btn-text">Run AEO Diagnostic</span>
+          <span class="btn-loading" hidden>
+            <svg class="spinner" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>
+            Analyzing...
+          </span>
+        </button>
+      </form>
+    </section>
+
+    <!-- ─── Settings Panel (hidden) ─── -->
+    <div id="settings-panel" class="settings-panel" hidden>
+      <div class="settings-card glass-card">
+        <div class="settings-header">
+          <h3>API Keys</h3>
+          <button id="btn-close-settings" class="btn-icon" aria-label="Close settings">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <p class="settings-desc">Keys are stored in your browser only and never sent to our server. They are passed directly to each AI's API.</p>
+        <div class="input-group">
+          <label for="key-openai">OpenAI API Key</label>
+          <input type="password" id="key-openai" placeholder="sk-..." />
+        </div>
+        <div class="input-group">
+          <label for="key-anthropic">Anthropic API Key</label>
+          <input type="password" id="key-anthropic" placeholder="sk-ant-..." />
+        </div>
+        <div class="input-group">
+          <label for="key-gemini">Google Gemini API Key</label>
+          <input type="password" id="key-gemini" placeholder="AI..." />
+        </div>
+        <button id="btn-save-keys" class="btn-primary btn-sm">Save Keys</button>
+      </div>
+    </div>
+
+    <!-- ─── Loading State ─── -->
+    <section id="loading-section" class="section" hidden>
+      <div class="loading-grid">
+        <div class="loading-card glass-card" id="load-gpt">
+          <div class="loading-model-icon gpt-accent">G</div>
+          <span>Querying GPT-4o...</span>
+          <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+        </div>
+        <div class="loading-card glass-card" id="load-claude">
+          <div class="loading-model-icon claude-accent">C</div>
+          <span>Querying Claude...</span>
+          <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+        </div>
+        <div class="loading-card glass-card" id="load-gemini">
+          <div class="loading-model-icon gemini-accent">G</div>
+          <span>Querying Gemini...</span>
+          <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+        </div>
+      </div>
+      <p class="loading-hint">Querying 3 AI models and analyzing brand mentions...</p>
+    </section>
+
+    <!-- ─── Results ─── -->
+    <section id="results-section" class="section" hidden>
+
+      <!-- Score Overview -->
+      <div id="score-overview" class="score-overview glass-card">
+        <div class="score-left">
+          <div class="score-ring-container">
+            <svg class="score-ring" viewBox="0 0 120 120">
+              <circle class="score-ring-bg" cx="60" cy="60" r="52" />
+              <circle class="score-ring-fill" cx="60" cy="60" r="52" id="score-ring-fill" />
+            </svg>
+            <div class="score-grade" id="score-grade">—</div>
+          </div>
+          <div class="score-label">AEO Score</div>
+        </div>
+        <div class="score-right">
+          <h3 id="score-title" class="score-title">Your AEO Report Card</h3>
+          <p id="score-subtitle" class="score-subtitle"></p>
+          <div class="score-stats" id="score-stats"></div>
+        </div>
+      </div>
+
+      <!-- Brand Rankings Table -->
+      <div class="results-block glass-card">
+        <h3 class="block-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+          Brand Visibility Rankings
+        </h3>
+        <p class="block-desc">How AI models rank brands in this category</p>
+        <div class="table-wrap">
+          <table id="brands-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Brand / Product</th>
+                <th class="th-model gpt-accent">GPT</th>
+                <th class="th-model claude-accent">Claude</th>
+                <th class="th-model gemini-accent">Gemini</th>
+                <th>Visibility</th>
+              </tr>
+            </thead>
+            <tbody id="brands-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Strengths & Weaknesses -->
+      <div id="user-brand-section" class="results-row" hidden>
+        <div class="results-block glass-card half">
+          <h3 class="block-title strengths-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Strengths
+          </h3>
+          <ul id="strengths-list" class="insight-list"></ul>
+        </div>
+        <div class="results-block glass-card half">
+          <h3 class="block-title weaknesses-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Weaknesses
+          </h3>
+          <ul id="weaknesses-list" class="insight-list"></ul>
+        </div>
+      </div>
+
+      <!-- Recommendations -->
+      <div class="results-block glass-card">
+        <h3 class="block-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          AEO Optimization Recommendations
+        </h3>
+        <ol id="recommendations-list" class="recommendations-list"></ol>
+      </div>
+
+      <!-- Category Trends -->
+      <div class="results-block glass-card">
+        <h3 class="block-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Category Intelligence
+        </h3>
+        <p id="category-trends" class="category-trends"></p>
+      </div>
+
+      <!-- Insights -->
+      <div class="results-block glass-card">
+        <h3 class="block-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          Key Insights
+        </h3>
+        <ul id="insights-list" class="insight-list insight-list-accent"></ul>
+      </div>
+
+      <!-- Raw AI Responses -->
+      <div class="results-block glass-card">
+        <button class="collapsible-header" id="btn-toggle-raw" aria-expanded="false">
+          <h3 class="block-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            Raw AI Responses
+          </h3>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="collapsible-body" id="raw-responses" hidden>
+          <div class="raw-response-cards" id="raw-response-cards"></div>
+        </div>
+      </div>
+
+      <!-- New Query -->
+      <div class="new-query-bar">
+        <button id="btn-new-query" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+          Run New Diagnostic
+        </button>
+      </div>
+    </section>
+
+    <!-- ─── Error State ─── -->
+    <section id="error-section" class="section" hidden>
+      <div class="error-card glass-card">
+        <div class="error-icon">⚠️</div>
+        <h3>Diagnostic Failed</h3>
+        <p id="error-message"></p>
+        <button id="btn-retry" class="btn-primary btn-sm">Try Again</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built for <strong>Pixii.ai</strong> — AEO Diagnostic uses OpenAI, Anthropic & Google Gemini APIs</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
