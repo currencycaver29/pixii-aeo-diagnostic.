@@ -24,6 +24,8 @@
     btnToggleRaw: $('#btn-toggle-raw'),
     btnNewQuery: $('#btn-new-query'),
     btnRetry: $('#btn-retry'),
+    btnExportPdf: $('#btn-export-pdf'),
+    btnCopyLink: $('#btn-copy-link'),
     settingsPanel: $('#settings-panel'),
     keyOpenai: $('#key-openai'),
     keyAnthropic: $('#key-anthropic'),
@@ -84,6 +86,8 @@
     els.btnToggleRaw.addEventListener('click', toggleRaw);
     els.btnNewQuery.addEventListener('click', resetToQuery);
     els.btnRetry.addEventListener('click', resetToQuery);
+    els.btnExportPdf.addEventListener('click', () => window.print());
+    els.btnCopyLink.addEventListener('click', handleCopyLink);
 
     // Close settings on backdrop click
     els.settingsPanel.addEventListener('click', (e) => {
@@ -129,6 +133,15 @@
     // Visual feedback
     els.btnSaveKeys.textContent = '✓ Saved';
     setTimeout(() => { els.btnSaveKeys.textContent = 'Save Keys'; }, 1500);
+  }
+
+  function handleCopyLink() {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      const originalText = els.btnCopyLink.innerHTML;
+      els.btnCopyLink.innerHTML = '✓ Copied';
+      setTimeout(() => { els.btnCopyLink.innerHTML = originalText; }, 2000);
+    });
   }
 
   // ─── Submit Handler ────────────────────────────────────────────────

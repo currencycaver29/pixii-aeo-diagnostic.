@@ -163,6 +163,7 @@ header {
 .btn-icon:hover { color: var(--text-primary); border-color: var(--border-hover); background: var(--bg-card); }
 
 .btn-sm { padding: 8px 20px; font-size: 13px; }
+.btn-xs { padding: 4px 10px; font-size: 11px; height: 28px; }
 
 /* ─── Sections ─── */
 .section { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
@@ -368,6 +369,12 @@ header {
 .score-overview {
   padding: 36px; display: flex; align-items: center; gap: 40px;
   background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(6, 182, 212, 0.04));
+  position: relative;
+}
+
+.score-actions-top {
+  position: absolute; top: 16px; right: 24px;
+  display: flex; gap: 8px;
 }
 
 .score-left { text-align: center; flex-shrink: 0; }
@@ -638,6 +645,38 @@ footer strong { color: var(--text-secondary); font-weight: 600; }
 
 /* ─── Utility ─── */
 [hidden] { display: none !important; }
+
+/* ─── Print Styles ─── */
+@media print {
+  body { background: white; color: black; }
+  .bg-grid, .bg-glow, header, .query-form, .new-query-bar, .score-actions-top, footer, #settings-panel, .hero-badge { display: none !important; }
+  .section { padding: 0; max-width: 100%; margin: 0; }
+  .glass-card { 
+    background: white !important; 
+    border: 1px solid #ddd !important; 
+    box-shadow: none !important; 
+    color: black !important;
+    backdrop-filter: none !important;
+  }
+  .score-overview { background: #f9f9f9 !important; border: 1px solid #eee !important; }
+  .score-grade { color: black !important; }
+  .score-ring-bg { stroke: #eee !important; }
+  .gradient-text { background: none !important; -webkit-text-fill-color: black !important; color: black !important; }
+  .block-title, .score-title { color: black !important; }
+  .block-desc, .score-subtitle, .stat-label { color: #666 !important; }
+  .stat-value { color: black !important; }
+  .insight-list li, .recommendations-list li { background: #fff !important; border: 1px solid #eee !important; color: #333 !important; }
+  .recommendations-list li::before { background: black !important; }
+  table thead th { color: #666 !important; border-bottom: 2px solid #333 !important; }
+  tbody tr { border-bottom: 1px solid #eee !important; }
+  tbody tr.user-brand-row { background: #f0f0ff !important; }
+  .position-badge { border: 1px solid #ccc !important; color: black !important; background: white !important; }
+  .vis-bar { background: #eee !important; }
+  .vis-bar-fill { background: black !important; }
+  .vis-score { color: black !important; }
+  .collapsible-body { display: block !important; }
+  .collapsible-header .chevron { display: none !important; }
+}
 
 /* Smooth appear for results blocks */
 .results-block, .results-row, .score-overview {
