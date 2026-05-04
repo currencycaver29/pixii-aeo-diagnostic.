@@ -13,6 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
+export default app; // Required for Vercel
 app.use(cors());
 app.use(express.json());
 app.use(express.static(join(__dirname, 'public')));
@@ -329,6 +330,8 @@ function getDemoData() {
 
 // ─── Start server ──────────────────────────────────────────────────
 
-app.listen(PORT, () => {
-  console.log(`\n  🔍 AEO Diagnostic running at http://localhost:${PORT}\n`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`\n  🔍 AEO Diagnostic running at http://localhost:${PORT}\n`);
+  });
+}
